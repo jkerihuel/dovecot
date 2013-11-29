@@ -1,4 +1,6 @@
 Makefile.in
+Makefile
+.deps
 doc/wiki
 aclocal.m4
 autom4te.cache
@@ -11,4 +13,11 @@ depcomp
 install-sh
 ltmain.sh
 missing
+config.h
+config.log
+config.status
+dovecot-config.in
+libtool
+stamp-h1
+stamp.h
 
