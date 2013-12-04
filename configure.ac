@@ -257,12 +257,12 @@ AS_HELP_STRING([--with-gc], [Use Boehm garbage collector]),
   want_gc=no)
 
 AC_ARG_WITH(storages,
-AS_HELP_STRING([--with-storages], [Build with specified mail storage formats (mdbox sdbox maildir mbox cydir imapc pop3c)]), [
+AS_HELP_STRING([--with-storages], [Build with specified mail storage formats (mdbox sdbox maildir mbox cydir imapc pop3c ldap)]), [
 	if test "$withval" = "yes" || test "$withval" = "no"; then
 		AC_MSG_ERROR([--with-storages needs storage list as parameter])
 	fi
 	mail_storages="shared `echo "$withval"|sed 's/,/ /g'`" ],
-	mail_storages="shared mdbox sdbox maildir mbox cydir imapc pop3c")
+	mail_storages="shared mdbox sdbox maildir mbox cydir imapc pop3c ldap")
 AC_SUBST(mail_storages)
 mail_storages="$mail_storages raw fail"
 # drop duplicates
@@ -2520,6 +2520,7 @@ imapc_libs='$(top_builddir)/src/lib-storage/index/imapc/libstorage_imapc.la $(to
 pop3c_libs='$(top_builddir)/src/lib-storage/index/pop3c/libstorage_pop3c.la'
 raw_libs='$(top_builddir)/src/lib-storage/index/raw/libstorage_raw.la'
 shared_libs='$(top_builddir)/src/lib-storage/index/shared/libstorage_shared.la'
+ldap_libs='$(top_builddir)/src/lib-storage/index/ldap/libstorage_ldap.la'
 
 CORE_LIBS='$(top_builddir)/src/lib-dovecot/libdovecot.la'
 STORAGE_LIB='$(top_builddir)/src/lib-storage/libdovecot-storage.la'
@@ -2557,6 +2558,9 @@ if test $have_sdbox = yes; then
 fi
 if test $have_mdbox = yes; then
   mail_storages="$mail_storages mdbox_deleted"
+fi
+if test $have_ldap = yes; then
+  mail_storages="$mail_storages ldap"
 fi
 
 dnl **
@@ -2870,6 +2874,7 @@ src/lib-storage/index/dbox-single/Makefile
 src/lib-storage/index/cydir/Makefile
 src/lib-storage/index/raw/Makefile
 src/lib-storage/index/shared/Makefile
+src/lib-storage/index/ldap/Makefile
 src/lib-storage/register/Makefile
 src/anvil/Makefile
 src/auth/Makefile

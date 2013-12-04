@@ -11,6 +11,7 @@
 #define MAILBOX_LIST_NAME_MAILDIRPLUSPLUS "maildir++"
 #define MAILBOX_LIST_NAME_IMAPDIR "imapdir"
 #define MAILBOX_LIST_NAME_FS "fs"
+#define MAILBOX_LIST_NAME_LDAP "ldap"
 #define MAILBOX_LIST_NAME_INDEX "index"
 #define MAILBOX_LIST_NAME_NONE "none"
 
